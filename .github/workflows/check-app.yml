@@ -29,6 +29,9 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
 
+      - name: Permission Gradle
+        run: chmod +x gradlew
+
       - name: Execute Gradle Tests
         run: ./gradlew  test
 

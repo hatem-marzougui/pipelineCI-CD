@@ -116,4 +116,4 @@ jobs:
               context: .
               file: Dockerfile
               push: true
-              tags: ghcr.io/${{ github.repository }}/my-app-image:${{ github.ref_name }}
+              tags: ghcr.io/hatem-marzougui/pipelineci-cd/my-app-image:main

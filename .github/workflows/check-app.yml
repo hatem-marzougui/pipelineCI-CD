@@ -1,4 +1,4 @@
-name: Check - Application
+name: Check - BackEnd
 
 on:
   push:
@@ -6,23 +6,14 @@ on:
       - main
   pull_request:
 
-env:
-  WORK_DIRECTORY: /home/runner/work/OC-Architecte-Projet11-Dev/OC-Architecte-Projet11-Dev/
-
 jobs:
-  tests-end-to-end:
+  tests-backend:
     strategy:
       matrix:
-        name: [Windows, Linux, MacOS]
+        name: [Java21]
         include:
-          - name: Windows
-            os: windows-latest
-            java-version: 21
-          - name: Linux
+          - name: Java21
             os: ubuntu-latest
-            java-version: 21
-          - name: MacOS
-            os: macos-latest
             java-version: 21
     runs-on: ${{ matrix.os }}
     steps:
@@ -42,14 +33,24 @@ jobs:
 
       - name: Execute Gradle Tests
         run: |
-          cd justDabFix/selenium
           ./gradlew test
 
       - name: Store Tests Reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: end-to-end tests on ${{ matrix.os }}
+          name: backend tests
           path: |
             **/build/reports/
-            **/build/test-results/
+            **/build/test-results/   
+
+      - name: Execute Gradle build
+        run: |        
+          ./gradlew build
+
+      - name: Store Production Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: distribution
+          path: |
+            **/build/libs

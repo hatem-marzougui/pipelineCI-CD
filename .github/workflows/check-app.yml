@@ -7,7 +7,7 @@ on:
   pull_request:
 
 jobs:
-  tests-backend:
+  tests-before-build:
     strategy:
       matrix:
         name: [Java21]

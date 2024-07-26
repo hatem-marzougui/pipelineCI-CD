@@ -31,18 +31,18 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
 
-     # - name: Execute Gradle Tests
-      #  run: |
-       #   ./gradlew  test
+      - name: Execute Gradle Tests
+        run: |
+          ./gradlew  test
 
-     # - name: Store Tests Reports
-      #  if: always()
-      #  uses: actions/upload-artifact@v4
-      #  with:
-      #    name: backend tests
-       #   path: |
-        #    **/build/reports/
-         #   **/build/test-results/
+      - name: Store Tests Reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: backend tests
+          path: |
+            **/build/reports/
+            **/build/test-results/   
 
       - name: Execute Gradle build
         run: |        
